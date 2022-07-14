@@ -1,4 +1,6 @@
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -22,7 +24,7 @@ public class AnaliseMensal {
 		int countDiasUteis = 0;
 		int countDiasSup = 0;
 	
-		try(FileReader reader = new FileReader("C:\\temp\\ws-eclipse\\desafioTarget\\dados.json")){
+		try(FileReader reader = new FileReader("C:\\temp\\ws-eclipse\\analiseDados-maven\\dados.json")){
 			
 			Object obj = jsonParser.parse(reader);
 			JSONArray listaMensal = (JSONArray) obj;
@@ -52,9 +54,17 @@ public class AnaliseMensal {
 		}catch(Exception e) {
 			
 		}	
+		FileWriter arq = new FileWriter("C:\\temp\\ws-eclipse\\analiseDados-maven\\relatorio.txt");
+		PrintWriter gravarArq = new PrintWriter(arq);
 		
-		System.out.println("Menor valor de faturamento: " + menorValor);
-		System.out.println("Maior valor de faturamento: " + maiorValor);
-		System.out.println("Dias superior a media: " + countDiasSup);
+	    gravarArq.printf("Análise Financeira\n");
+	    gravarArq.printf("------------------\n");
+	    
+	    gravarArq.println("Dias de faturamento: " + countDiasUteis);
+	    gravarArq.printf("Média mensal: R$ %.2f%n", mediaMensal);
+	    gravarArq.printf("Menor valor de faturamento: R$ %.2f%n", menorValor);
+	    gravarArq.printf("Maior valor de faturamento: R$ %.2f%n", maiorValor);
+	    gravarArq.println("Dias superior a media: " + countDiasSup);
+	    arq.close();
 	}
 }

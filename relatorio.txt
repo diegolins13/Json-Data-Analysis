@@ -1,0 +1,7 @@
+Análise Financeira
+------------------
+Dias de faturamento: 21
+Média mensal: R$ 20865,37
+Menor valor de faturamento: R$ 373,78
+Maior valor de faturamento: R$ 48924,24
+Dias superior a media: 10
